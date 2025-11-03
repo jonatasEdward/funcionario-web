@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { FuncionarioService } from '../../services/funcionario.service';
+import { FuncionarioService } from '../../../services/funcionario.service';
 
 // PrimeNG
 import { TableModule } from 'primeng/table';
@@ -13,7 +13,7 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import {FuncionarioResponse} from "../../models/funcionarioResponse";
+import {FuncionarioResponse} from "../../../models/funcionarioResponse";
 
 @Component({
   selector: 'app-funcionario-list',

@@ -1,0 +1,50 @@
+<form #formulario="ngForm" (ngSubmit)="onSubt(formulario)">
+
+  <div>
+    <label>Nome: </label>
+    <input pInputText
+           name="nome"
+           type="text"
+           required
+           minlength="3"
+           [(ngModel)]="usuario.nome"
+           #nome="ngModel"
+    />
+    <div *ngIf="nome.invalid && nome.touched">
+      <span>Nome é obrigatorio</span>
+    </div>
+  </div>
+
+  <div>
+    <label>E-mail: </label>
+    <input pInputText
+           name="email"
+           type="email"
+           required
+           email
+           [(ngModel)]="usuario.email"
+           #email="ngModel"
+    />
+    <div *ngIf="email.invalid && email.touched">
+      <span>E-mail é obrigatorio</span>
+    </div>
+  </div>
+  <div>
+    <label>Senha: </label>
+    <input pInputText
+           name="senha"
+           type="password"
+           required
+           minlength="6"
+           [(ngModel)]="usuario.senha"
+           #senha="ngModel"
+    />
+    <div *ngIf="senha.invalid && senha.touched">
+      <span>Senha é obrigatorio</span>
+    </div>
+  </div>
+
+  <p-button type="submit" [disabled]="formulario.invalid">Salvar</p-button>
+</form>
+
+<p>Status: {{formulario.valid ? 'Valido' : 'Invalido' }}</p>

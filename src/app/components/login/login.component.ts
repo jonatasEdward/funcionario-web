@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../../services/auth.service";
 import {Button} from "primeng/button";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  templateUrl: './login.component.html',
   imports: [
     Button
   ],
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private auth: AuthService) {}
 
-  login(): void {
-    this.auth.login();
+
+  constructor(private authService: AuthService) {
+  }
+
+  login(){
+    this.authService.login();
   }
 }

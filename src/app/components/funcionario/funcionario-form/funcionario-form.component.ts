@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { FuncionarioService } from '../../services/funcionario.service';
+import { FuncionarioService } from '../../../services/funcionario.service';
 import { MessageService } from 'primeng/api';
 
 // PrimeNG
@@ -11,7 +11,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
-import {FuncionarioRequest} from "../../models/funcionarioRequest";
+import {FuncionarioRequest} from "../../../models/funcionarioRequest";
 
 @Component({
   selector: 'app-funcionario-form',
@@ -24,6 +24,7 @@ import {FuncionarioRequest} from "../../models/funcionarioRequest";
   styleUrls: ['./funcionario-form.component.css']
 })
 export class FuncionarioFormComponent {
+  isSalvo: boolean = false;
   id: number | null = null;
   isEdicao = false;
   carregando = this.service.loading;
@@ -83,6 +84,7 @@ export class FuncionarioFormComponent {
     if (this.isEdicao && this.id) {
       this.service.atualizar(this.id, this.funcionario).subscribe({
         next: () => {
+          this.isSalvo = true;
           this.msg.add({ severity: 'success', summary: 'Sucesso', detail: 'Funcionário atualizado' });
           this.service.loading.set(false);
           this.router.navigate(['/funcionarios']);
@@ -92,6 +94,7 @@ export class FuncionarioFormComponent {
     } else {
       this.service.criar(this.funcionario).subscribe({
         next: () => {
+          this.isSalvo = true;
           this.msg.add({ severity: 'success', summary: 'Sucesso', detail: 'Funcionário cadastrado' });
           this.service.loading.set(false);
           this.router.navigate(['/funcionarios']);
@@ -102,6 +105,7 @@ export class FuncionarioFormComponent {
   }
 
   limpar() {
+    this.isSalvo = false;
     this.funcionario = {
       nome: '',
       email: '',
@@ -143,6 +147,7 @@ export class FuncionarioFormComponent {
   }
 
   private tratarErroHttp(err: any) {
+    this.isSalvo = false;
     this.service.loading.set(false);
     const status = err?.status;
     if (status === 409) {

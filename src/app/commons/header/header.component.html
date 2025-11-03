@@ -1,11 +1,1 @@
-<div class="card">
-  <p-toolbar>
-    <div *ngIf="isAuthenticated$ | async" class="p-toolbar-group">
-      <p-button label="Sair" severity="danger" class="mr-2" (onClick)="confirmLogout()"/>
-    </div>
-  </p-toolbar>
-</div>
-<p-confirmDialog
-  acceptLabel="Sim"
-  rejectLabel="Não">
-</p-confirmDialog>
+<p-button *ngIf="isLogado()" label="Sair" severity="danger" (click)="sair()" />

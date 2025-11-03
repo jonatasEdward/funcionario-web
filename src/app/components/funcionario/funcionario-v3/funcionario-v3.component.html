@@ -1,0 +1,29 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubt()">
+  <div>
+    <label>Nome:</label>
+    <input pInputText formControlName="nome">
+    <div *ngIf="formulario.get('nome')?.invalid && formulario.get('nome')?.touched">
+      <span>Nome é obrigatorio</span>
+    </div>
+  </div>
+
+  <div>
+    <label>E-mail:</label>
+    <input pInputText formControlName="email">
+    <div *ngIf="formulario.get('email')?.invalid && formulario.get('email')?.touched">
+      <span>E-mail é obrigatorio</span>
+    </div>
+  </div>
+
+  <div>
+    <label>Idade:</label>
+    <input pInputText formControlName="idade">
+    <div *ngIf="formulario.get('idade')?.invalid && formulario.get('idade')?.touched">
+      <span>Idade é obrigatorio</span>
+    </div>
+  </div>
+
+  <p-button type="submit" [disabled]="formulario.invalid">Salvar</p-button>
+</form>
+
+<p>Status: {{formulario.invalid ? 'Invalido' : 'Valido'}}</p>
